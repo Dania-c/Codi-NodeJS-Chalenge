@@ -71,6 +71,8 @@ function hello(){
 }
 
 /**
+ * print out the commands' list
+ *
  * @returns {void}
  */
  function help(){
