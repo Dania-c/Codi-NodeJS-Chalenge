@@ -40,6 +40,9 @@ function onDataReceived(text) {
   else if(text.trim() === 'hello'){
     hello();
   }
+  else if(text.trim() === 'help'){
+    help();
+  }
   else{
     unknownCommand(text);
   }
@@ -65,6 +68,13 @@ function unknownCommand(c){
  */
 function hello(){
   console.log('hello!')
+}
+
+/**
+ * @returns {void}
+ */
+ function help(){
+  console.log('list of commands:\n quit:to quit\n exit:to quit\n hello:say hello\n help:type all of this');
 }
 
 
