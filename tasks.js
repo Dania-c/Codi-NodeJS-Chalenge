@@ -47,6 +47,8 @@ function onDataReceived(text) {
     list();
   }else if(text.trim().split(" ")[0] === 'add'){
     add(text);
+  }else if(text.trim().split(" ")[0] === 'del'){
+    del(text);
   }
   else{
     unknownCommand(text);
@@ -118,12 +120,26 @@ console.log(m);
 /**
  * add to the ToDo list
  *
- * @returns {void}
+ * 
  */
  function add(c){
   if (x= c.trim().split(" ")[1] == undefined) { console.log("error");}
 else{
   toDo.push(c.substring(3).trim());}
+}
+
+function del(c){
+  var i=c.substring(3).trim();
+
+if(c.trim().split(" ")[1] == undefined){
+ toDo.pop();
+}else if (isNaN(i)){
+ console.log("enter a valid number");
+}else{
+
+  toDo.splice(i-1,1);
+}
+
 }
 
 // The following line starts the application
