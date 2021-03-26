@@ -83,9 +83,20 @@ function hello(c){
  *
  * @returns {void}
  */
- function help(){
-  console.log('list of commands:\n quit:to quit\n exit:to quit\n hello:say hello\n help:type all of this');
-}
+//  function help(){
+//   console.log('list of commands:\n quit:to quit\n exit:to quit\n hello:say hello\n help:type all of this');
+// }
+function help(){
+
+  console.log('1_hello for saying just hello or hello plus your additional input like hello x ==> \'hello x\'  \n'+
+              '2_quit or exit to quit the app\n' +
+              '3_list to see all the tasks you have \n' +
+              '4_add to add tasks\n' +
+              '5_del to remove a task\n' 
+           );
+  
+  }
+  
 
 
 /**
