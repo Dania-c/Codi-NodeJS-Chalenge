@@ -34,7 +34,7 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  console.log("console " +text.trim().split(" ")[0]);
+  // console.log("console " +text.trim().split(" ")[0]);
   if (text.trim() === 'quit' || text.trim() === 'exit') {
     quit();
   }
@@ -43,6 +43,8 @@ function onDataReceived(text) {
   }
   else if(text.trim() === 'help'){
     help();
+  }else if(text.trim() === 'list'){
+    list();
   }
   else{
     unknownCommand(text);
@@ -91,6 +93,23 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+
+/**
+ * List commands
+ */
+
+var toDo=["buy bread","add potato","do the exercise"];
+
+function list(){
+
+var m="";
+for (let i = 1; i <= toDo.length; i++) {
+
+  m=m+i+"_"+toDo[i-1]+"\n";
+}
+console.log(m);
+}
+
 
 // The following line starts the application
 startApp("Dania Captan")
