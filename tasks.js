@@ -147,11 +147,15 @@ if(c.trim().split(" ")[1] == undefined){
 }else if (isNaN(i)){
  console.log("enter a valid number");
 }else{
-
-  toDo.splice(i-1,1);
+  if (i> toDo.length) {
+    console.log("number out of Range");
+  } else
+  {toDo.splice(i-1,1);}
 }
 
 }
+
+
 
 // The following line starts the application
 startApp("Dania Captan")
