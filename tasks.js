@@ -63,7 +63,8 @@ function unknownCommand(c){
 
 
 /**
- * Says hello
+ * if you type"hello xxx", you will get "hello xxx!"
+ * if you just type hello, you will get "hello!"
  *
  * @returns {void}
  */
