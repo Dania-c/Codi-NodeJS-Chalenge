@@ -49,6 +49,8 @@ function onDataReceived(text) {
     add(text);
   }else if(text.trim().split(" ")[0] === 'del'){
     del(text);
+  } else if(text.trim().split(" ")[0] === 'edit'){
+    edit(text);
   }
   else{
     unknownCommand(text);
@@ -155,7 +157,27 @@ if(c.trim().split(" ")[1] == undefined){
 
 }
 
+function edit(c){    
+  var i=c.substring(4).trim(); 
+  var j;
 
+if(c.trim().split(" ")[1] == undefined){               //edit
+  console.log("enter valid input to edit");
+}else if (isNaN(c.trim().split(" ")[1])){             //edit  buy some bread
+ toDo[toDo.length -1] = i;
+}else{
+        j=c.trim().split(" ")[1] ;  
+        var m=c.indexOf(c.trim().split(" ")[2]);
+        
+        if (m==-1 ){                                 // edit 2
+          console.log("enter something to edit ");
+        }
+        else{
+          toDo[j-1]=c.substring(m).trim();         // edit 2 buy chocolat
+             }
+      }
+
+}
 
 // The following line starts the application
-startApp("Dania Captan")
+startApp("Dania Captan");
