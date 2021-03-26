@@ -45,6 +45,8 @@ function onDataReceived(text) {
     help();
   }else if(text.trim() === 'list'){
     list();
+  }else if(text.trim().split(" ")[0] === 'add'){
+    add(text);
   }
   else{
     unknownCommand(text);
@@ -94,6 +96,8 @@ function quit(){
   process.exit();
 }
 
+
+
 /**
  * List commands
  */
@@ -110,6 +114,17 @@ for (let i = 1; i <= toDo.length; i++) {
 console.log(m);
 }
 
+
+/**
+ * add to the ToDo list
+ *
+ * @returns {void}
+ */
+ function add(c){
+  if (x= c.trim().split(" ")[1] == undefined) { console.log("error");}
+else{
+  toDo.push(c.substring(3).trim());}
+}
 
 // The following line starts the application
 startApp("Dania Captan")
