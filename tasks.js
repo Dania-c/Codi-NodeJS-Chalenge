@@ -98,7 +98,10 @@ function help(){
               '2_quit or exit to quit the app\n' +
               '3_list to see all the tasks you have \n' +
               '4_add to add tasks\n' +
-              '5_del to remove a task\n' 
+              '5_del to remove a task, you can specify the row number or the last item will be deleted\n' +
+              '6_edit to edit a task,you can specify the row number or the last item will be edited\n'+
+              '7_check  to add \'[✔]\' sign to the completed task\n'+
+              '8_uncheck to add \'[ ]\' sign to the uncompleted task'
            );
   
   }
