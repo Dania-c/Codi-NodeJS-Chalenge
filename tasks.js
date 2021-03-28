@@ -11,7 +11,8 @@
  */
 
  var fs = require('fs');
-
+ var dataName;
+ var toDo;
 
 function startApp(name){
   process.stdin.resume();
@@ -19,7 +20,8 @@ function startApp(name){
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
-  load()
+  check_databaseName_argument()
+  load(dataName)
 }
 
 
@@ -119,7 +121,7 @@ function help(){
  * @returns {void}
  */
 function quit(){
-  save();
+  save(dataName);
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -131,7 +133,7 @@ function quit(){
  */
 
  
-var toDo=[ ["buy Chips",true],["go to the doctor",false],["visit parent",true] ];
+// var toDo=[ ["buy Chips",true],["go to the doctor",false],["visit parent",true] ];
 
 
 var sign="";
@@ -259,8 +261,8 @@ function uncheck(c){
 
 //save function
 
-function save(){
-var dbName='database.json'
+function save(dbName='database.json'){
+// var dbName='database.json'
   var myjson=JSON.stringify(toDo);
 
 
@@ -272,9 +274,9 @@ var dbName='database.json'
 }
 
 
-function load(){
+function load(dbName='database.json'){
 
-var dbName='database.json'
+// var dbName='database.json'
   fs.readFile(dbName,'utf-8',function (err,jsonString){
   
     if (err) throw err;
@@ -297,6 +299,32 @@ var dbName='database.json'
   
   }
   
+
+  function check_databaseName_argument(){
+
+    if(process.argv[2]==undefined){
+      dataName='database.json';
+      console.log(" you choose to manipulate database.json");
+    }else{
+          const db_args=process.argv[2].toString();
+      
+          const path = './'+db_args;
+  
+          if (fs.existsSync(path)) {
+          console.log(" you choose to manipulate an existing database");
+          dataName=process.argv[2];
+          }else{
+            dataName=process.argv[2];
+            let arr=[["dum data",false]];
+            fs.writeFileSync(process.argv[2],JSON.stringify(arr), function (err) {
+              if (err) throw err;
+              console.log('database created!');
+            });
+        
+        }
+    }
+  }
+
 
 // The following line starts the application
 startApp("Dania Captan");
