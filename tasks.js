@@ -51,6 +51,10 @@ function onDataReceived(text) {
     del(text);
   } else if(text.trim().split(" ")[0] === 'edit'){
     edit(text);
+  }else if (text.trim().split(" ")[0]==="check") {
+    check(text);
+  }else if (text.trim().split(" ")[0]==="uncheck") {
+    uncheck(text);
   }
   else{
     unknownCommand(text);
@@ -201,6 +205,49 @@ if(c.trim().split(" ")[1] == undefined){               //edit
       }
 
 }
+
+
+//check function
+function check(c){
+
+  var citem;
+  
+
+  if(c.trim().split(" ")[1] == undefined){
+    console.log("enter valid input");
+  }else if (isNaN(c.trim().split(" ")[1])) {
+    console.log("enter valid row number");
+  }else{
+        citem=c.trim().split(" ")[1] ;
+           if (citem>toDo.length) {
+             console.log(" number out of range ");
+           }else{
+            toDo[citem-1][1]=true;
+  }
+   }
+     }
+
+//uncheck function
+
+function uncheck(c){
+
+  var citem;
+  
+
+  if(c.trim().split(" ")[1] == undefined){
+    console.log("enter valid input");
+  }else if (isNaN(c.trim().split(" ")[1])) {
+    console.log("enter valid row number");
+  }else{
+        citem=c.trim().split(" ")[1] ;
+           if (citem>toDo.length) {
+             console.log(" number out of range ");
+           }else{
+            toDo[citem-1][1]=false;
+  }
+   }
+     }
+
 
 // The following line starts the application
 startApp("Dania Captan");
