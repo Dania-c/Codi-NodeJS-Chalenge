@@ -117,15 +117,24 @@ function quit(){
  * List commands
  */
 
-var toDo=["buy bread","add potato","do the exercise"];
+ 
+var toDo=[ ["buy Chips",true],["go to the doctor",false],["visit parent",true] ];
 
+
+var sign="";
 function list(){
 
 var m="";
 for (let i = 1; i <= toDo.length; i++) {
 
-  m=m+i+"_"+toDo[i-1]+"\n";
-}
+  if(toDo[i-1][1]===true){
+        sign=" [✔] ";
+      }else{
+        sign=" [ ] ";
+      }
+        m= m+i+sign+toDo[i-1][0]+"\n";
+      }
+    
 console.log(m);
 }
 
@@ -138,8 +147,15 @@ console.log(m);
  function add(c){
   if (x= c.trim().split(" ")[1] == undefined) { console.log("error");}
 else{
-  toDo.push(c.substring(3).trim());}
+  // toDo.push(c.substring(3).trim());}
+  toDo.length=toDo.length+1;
+
+  var newlen=toDo.length;
+  var newtxt=c.substring(3).trim();
+
+ toDo[newlen-1]=[newtxt,false];
 }
+ }
 
 function del(c){
   var i=c.substring(3).trim();
@@ -160,20 +176,27 @@ if(c.trim().split(" ")[1] == undefined){
 function edit(c){    
   var i=c.substring(4).trim(); 
   var j;
+  var t;
 
 if(c.trim().split(" ")[1] == undefined){               //edit
   console.log("enter valid input to edit");
 }else if (isNaN(c.trim().split(" ")[1])){             //edit  buy some bread
- toDo[toDo.length -1] = i;
+ 
+  toDo[toDo.length -1][0] = i;
+  toDo[toDo.length -1][1]=false;
+
 }else{
-        j=c.trim().split(" ")[1] ;  
+        j=c.trim().split(" ")[1] ; 
         var m=c.indexOf(c.trim().split(" ")[2]);
         
         if (m==-1 ){                                 // edit 2
           console.log("enter something to edit ");
         }
-        else{
-          toDo[j-1]=c.substring(m).trim();         // edit 2 buy chocolat
+        else if (j> toDo.length) {
+          console.log("number out of Range");
+        } else{
+          toDo[j-1][0]=c.substring(m).trim();
+          toDo[j-1][1]         // edit 2 buy chocolat
              }
       }
 
