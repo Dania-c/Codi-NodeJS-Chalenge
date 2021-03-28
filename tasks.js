@@ -9,12 +9,17 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+
+ var fs = require('fs');
+
+
 function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
+  load()
 }
 
 
@@ -114,6 +119,7 @@ function help(){
  * @returns {void}
  */
 function quit(){
+  save();
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -251,6 +257,46 @@ function uncheck(c){
    }
      }
 
+//save function
+
+function save(){
+var dbName='database.json'
+  var myjson=JSON.stringify(toDo);
+
+
+  fs.writeFileSync(dbName, myjson, function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
+
+}
+
+
+function load(){
+
+var dbName='database.json'
+  fs.readFile(dbName,'utf-8',function (err,jsonString){
+  
+    if (err) throw err;
+  
+  try {
+  const data=JSON.parse(jsonString);
+  
+  toDo=data;
+  
+  } catch (err) {
+  
+  console.log('Error parsing JSON',err);
+  
+  }
+  
+  console.log("data loaded sucessfully");
+  
+  
+  });
+  
+  }
+  
 
 // The following line starts the application
 startApp("Dania Captan");
